@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import { useState } from "react";
+import {useHistory, Route} from 'react-router-dom';
+import Main from './main';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [input, setInput] = useState("hello");
+    const history = useHistory();
+    const a = (x, y) => {
+        return console.log(x + y);
+    };
+    return (
+        <div className="App">
+        <p className="click" onClick={() => {
+        console.log('hello!')
+            history.push('/main')
+        }
+        }>Click!</p>
+            <Route exact path="/main" render={() => <Main />} />
+        </div>
+    );
 }
 
 export default App;
